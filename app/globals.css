@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg: #04080f;
+  --card: #080f1e;
+  --card2: #0c1628;
+  --border: #162240;
+  --red: #d4222a;
+  --red-bright: #ef3340;
+  --gold: #e8b84b;
+  --gold-light: #f5d080;
+  --green: #00a651;
+  --accent: #3a8fe8;
+  --text: #f0f5ff;
+  --muted: #3a5070;
+  --muted2: #7090b0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #04080f;
+  color: #f0f5ff;
+  font-family: 'Barlow', sans-serif;
+  min-height: 100%;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: #162240; border-radius: 2px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.fade-up { animation: fadeUp .3s ease both; }
+.spin-anim { animation: spin .8s linear infinite; }
+
+input, textarea, select {
+  font-family: 'Barlow', sans-serif;
+  background: #0c1628;
+  border: 1px solid #162240;
+  color: #f0f5ff;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+input:focus, textarea:focus { border-color: #3a8fe8; }
+input::placeholder, textarea::placeholder { color: #7090b0; }
