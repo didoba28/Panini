@@ -1,19 +1,24 @@
 [build]
-  command = "npm run build"
-  publish = ".next"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  command    = "npm run build"
+  publish    = "out"       # dossier généré par output: export
 
 [build.environment]
-  NODE_VERSION = "20"
-  NEXT_TELEMETRY_DISABLED = "1"
-  NEXT_PUBLIC_SUPABASE_URL = "https://placeholder.supabase.co"
+  NODE_VERSION              = "20"
+  NEXT_TELEMETRY_DISABLED   = "1"
+  NEXT_PUBLIC_SUPABASE_URL  = "https://placeholder.supabase.co"
   NEXT_PUBLIC_SUPABASE_ANON_KEY = "placeholder-build-only"
+  # L'endpoint IA pointe vers la Netlify Function
+  NEXT_PUBLIC_AI_ENDPOINT   = "/.netlify/functions/ai"
+
+# SPA fallback : toutes les routes → index.html (Next.js gère le routing côté client)
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
 
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options         = "DENY"
+    X-Content-Type-Options  = "nosniff"
+    Referrer-Policy         = "strict-origin-when-cross-origin"

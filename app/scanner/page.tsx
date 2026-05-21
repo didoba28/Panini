@@ -50,7 +50,9 @@ async function scanImageWithGPT(base64DataUrl: string, mode: "sticker" | "page")
        Les codes d'équipes valides sont : ${teamList}.
        Liste TOUS les stickers visibles ou cochés. Réponds UNIQUEMENT avec un JSON : {"stickers":["FRA-3","MEX-12",...]}`;
 
-  const res = await fetch("/api/claude", {
+  // En prod Netlify → /.netlify/functions/ai  |  en local → /api/claude
+  const endpoint = process.env.NEXT_PUBLIC_AI_ENDPOINT ?? "/api/claude";
+  const res = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
