@@ -1,20 +1,30 @@
+// Proxy OpenAI GPT-4o — clé cachée côté serveur
+// Accepte { messages, maxTokens } — messages au format OpenAI (role/content)
 export async function POST(req: Request) {
-  const { content, maxTokens = 1000 } = await req.json();
+  const { messages, maxTokens = 1000 } = await req.json();
 
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": process.env.ANTHROPIC_API_KEY!,
-      "anthropic-version": "2023-06-01",
+      "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "claude-sonnet-4-20250514",
+      model: "gpt-4o",
       max_tokens: maxTokens,
-      messages: [{ role: "user", content }],
+      messages,
     }),
   });
 
+  if (!res.ok) {
+    const err = await res.text();
+    return Response.json({ error: err }, { status: res.status });
+  }
+
   const data = await res.json();
-  return Response.json(data);
+  // Renvoie le texte directement pour simplifier le consommateur
+  return Response.json({
+    text: data.choices?.[0]?.message?.content ?? "",
+    raw: data,
+  });
 }
