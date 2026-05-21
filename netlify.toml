@@ -5,8 +5,8 @@
 [build.environment]
   NODE_VERSION                  = "20"
   NEXT_TELEMETRY_DISABLED       = "1"
-  NEXT_PUBLIC_SUPABASE_URL      = "https://placeholder.supabase.co"
-  NEXT_PUBLIC_SUPABASE_ANON_KEY = "placeholder-build-only"
+  NEXT_PUBLIC_SUPABASE_URL      = "https://wvxzjciyeewqnbpzroex.supabase.co"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2eHpqY2l5ZWV3cW5icHpyb2V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyMzQwNzcsImV4cCI6MjA5NDgxMDA3N30._gSm3-jqNiHwKFyzpzDRkGmJgd1sbsif5zgoRQ1aNOo"
   NEXT_PUBLIC_AI_ENDPOINT       = "/.netlify/functions/ai"
 
 # Pas de redirect SPA — chaque page a son propre index.html (trailingSlash: true)
